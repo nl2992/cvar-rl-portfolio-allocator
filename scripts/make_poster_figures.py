@@ -261,7 +261,7 @@ TOLERATED = 5.0
 def coupling() -> None:
     """Three metric panels of grouped bars, one bar per arm, values printed above each bar."""
     ps.apply()
-    fig, axes = plt.subplots(1, 3, figsize=(14.6, 4.2))
+    fig, axes = plt.subplots(1, 3, figsize=(14.6, 6.7))
     panels = [(r"Sharpe ratio $\uparrow$", 1, "{:.2f}", (0, 1.25), [0, 0.5, 1.0]),
               (r"CVaR$_{0.99}$ (%) $\downarrow$", 2, "{:.1f}", (0, 8.0), [0, 2, 4, 6]),
               (r"Breach rate (%) $\downarrow$", 3, "{:.1f}", (0, 118), [0, 25, 50, 75, 100])]
@@ -287,7 +287,7 @@ def coupling() -> None:
     handles.append(Line2D([0], [0], color=ps.DARK, lw=2.2, ls="--", label="5% tolerated breach rate"))
     fig.legend(handles=handles, loc="lower center", ncols=4, bbox_to_anchor=(0.5, 0.0), fontsize=ps.FONT - 5,
                handlelength=1.3, columnspacing=2.0, labelspacing=0.5)
-    fig.tight_layout(pad=0.3, w_pad=2.5, rect=(0, 0.25, 1, 1))
+    fig.tight_layout(pad=0.3, w_pad=2.5, rect=(0, 0.16, 1, 1))
     report(fig, "coupling")
     ps.save(fig, "figure_coupling")
 
@@ -309,7 +309,7 @@ def regime() -> None:
               for key, *_ in REGIME_ARMS}
     n_weeks = {r: int(tables["rl_cvar_constrained"].loc[r, "n_weeks"]) for r, _ in REGIMES}
     ps.apply()
-    fig, ax = plt.subplots(figsize=(9.0, 6.6))
+    fig, ax = plt.subplots(figsize=(9.0, 7.8))
     width, top = 0.26, 7.8
     for j, (key, label, colour, alpha) in enumerate(REGIME_ARMS):
         ours = "ours" in label
