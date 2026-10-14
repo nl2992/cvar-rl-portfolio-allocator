@@ -4,11 +4,11 @@
 
 # Making Tail Constraints Bind
 
-**Two Silent Failure Modes in CVaR-Constrained Portfolio RL**
+Two silent failure modes in CVaR-constrained portfolio RL
 
-**Nigel Li** · **Yutong Han** · Columbia University
+Nigel Li · Yutong Han · Columbia University
 
-*ICAIF '26 · 7th ACM International Conference on AI in Finance · Milan, 14–17 November 2026*
+*ICAIF '26 · 7th ACM International Conference on AI in Finance · Milan, 14 to 17 November 2026*
 
 <p>
   <a href="https://github.com/nl2992/cvar-rl-portfolio-allocator/stargazers"><img src="https://img.shields.io/github/stars/nl2992/cvar-rl-portfolio-allocator?style=flat" alt="Stars"/></a>
@@ -18,32 +18,28 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"/></a>
 </p>
 
-<a href="paper/main.pdf"><b>📄 Paper</b></a> ·
-<a href="poster/poster.pdf"><b>🖼️ Poster</b></a> ·
-<a href="#-quick-start"><b>🚀 Quick start</b></a> ·
-<a href="#-reproducing-the-paper"><b>🔁 Reproduce</b></a> ·
-<a href="#-citation"><b>📝 Cite</b></a>
+<a href="paper/main.pdf">Paper</a> ·
+<a href="poster/poster.pdf">Poster</a> ·
+<a href="#quick-start">Quick start</a> ·
+<a href="#reproducing-the-paper">Reproduce</a> ·
+<a href="#citation">Cite</a>
 
 </div>
 
----
+## News
 
-## 📰 News
+- 2026-11: poster presentation at ICAIF '26 in Milan.
+- 2026-10: camera-ready paper, A0 poster and reproduction code released here.
+- 2026: paper accepted at ICAIF '26, the 7th ACM International Conference on AI in Finance.
 
-- **2026-11** — Poster presentation at **ICAIF '26**, Milan.
-- **2026-10** — Camera-ready paper, A0 poster and full reproduction code released in this repository.
-- **2026** — Paper accepted at **ICAIF '26**, the 7th ACM International Conference on AI in Finance.
+## Why this project
 
----
-
-## 💡 Why this project?
-
-An allocator trained only to earn return has no reason to avoid large losses. The standard remedy is a **CVaR budget** imposed through a **Lagrangian penalty**. We show that this remedy can fail with no visible symptom, and that the usual way of checking it can mislead.
+An allocator trained only to earn return has no reason to avoid large losses. The standard remedy is a CVaR budget imposed through a Lagrangian penalty. That remedy can fail with no visible symptom, and the usual way of checking it can mislead.
 
 > [!IMPORTANT]
-> **The claim is narrow:** the constraint pipeline and a decision-time filter reduce tail risk and restore out-of-sample budget compliance. We do **not** claim that the learned allocator generates alpha or beats rolling minimum variance.
+> The evidence supports tail-risk control. The constraint pipeline and a decision-time filter cut tail losses and bring out-of-sample budget breaches back to 7.4% of weeks. The learned allocator's Sharpe lead over rolling minimum variance holds on one stress split and reverses under walk-forward testing.
 
-The paper splits one question — *does a tail-risk limit on an RL allocator do what we think it does?* — into two:
+The paper asks whether a tail-risk limit on an RL allocator does what it is meant to do, and splits that into two questions:
 
 ```mermaid
 %%{init: {"flowchart": {"wrappingWidth": 320}}}%%
@@ -57,36 +53,32 @@ flowchart TD
     A3 --> A4["Fix: decision-time CVaR filter<br/>breach rate 75.1% → 7.4%"]
     T4 -->|"B. Is the evidence reliable?"| B1["Same learner, same 31 assets,<br/>two test protocols"]
     B1 --> B2["Failure 2: the ranking reverses<br/>stress split: 0.85 vs 0.23 min-var<br/>walk-forward: 0.74 vs 1.40 min-var"]
-    B2 --> B3["Fix: rolling walk-forward with Wilcoxon,<br/>Benjamini–Hochberg and Deflated Sharpe"]
+    B2 --> B3["Fix: rolling walk-forward with Wilcoxon,<br/>Benjamini-Hochberg and Deflated Sharpe"]
     B3 --> B4["Tail-risk reduction survives, p = 8.8×10⁻⁶<br/>Sharpe edge over optimisers does not"]
-    A4 --> C["Claim: tail-risk control, not alpha<br/>Two checks: watch λ,<br/>and never trust one test window"]
+    A4 --> C["Result: the constraint controls tail risk<br/>Two checks: plot λ during training,<br/>and test on more than one window"]
     B4 --> C
 ```
 
----
-
-## 🖼️ Paper & poster
+## Paper and poster
 
 <table>
   <tr>
     <td align="center" width="50%">
       <a href="paper/main.pdf"><img src="docs/assets/paper_page1.png" width="300" alt="First page of the paper"/></a><br/>
-      <b>Paper</b> (8 pages, ACM format)<br/>
+      Paper (8 pages, ACM format)<br/>
       <a href="paper/main.pdf">PDF</a> · <a href="paper/main.tex">LaTeX source</a>
     </td>
     <td align="center" width="50%">
       <a href="poster/poster.pdf"><img src="docs/assets/poster_preview.png" width="300" alt="A0 conference poster"/></a><br/>
-      <b>Poster</b> (A0 portrait)<br/>
+      Poster (A0 portrait)<br/>
       <a href="poster/poster.pdf">PDF</a> · <a href="poster/poster.tex">LaTeX source</a>
     </td>
   </tr>
 </table>
 
----
+## The two failure modes
 
-## 🔍 The two failure modes
-
-### Failure 1 · The penalty weight never moves
+### Failure 1: the penalty weight never moves
 
 The penalty adds $`\lambda\,\mathrm{ReLU}(\widehat{\mathrm{CVaR}}-d)`$ to the loss, and $`\lambda`$ follows dual ascent:
 
@@ -102,27 +94,25 @@ The CVaR excess is about $`10^{-2}`$ in weekly-return units while the return obj
 | Change in $`\lambda`$ per breaching update | $`10^{-5}`$ | $`0.05`$ |
 | Final $`\lambda`$ after 1,500 updates (5-seed mean) | `0.022` | `0.101` |
 
-With the mis-scaled step the budget exists only on paper — yet tail metrics still improve, because the anchor, the projection and CVaR-aware checkpoint selection lower tail risk on their own. **Nothing flags the failure unless you plot λ.**
+With the mis-scaled step the budget exists only on paper. Tail metrics still improve, because the anchor, the projection and CVaR-aware checkpoint selection lower tail risk on their own, so the failure only shows up if you plot λ over training.
 
 <p align="center">
   <img src="docs/assets/poster_lambda_trace.svg" width="720" alt="Lagrange multiplier during training: scaled dual rises to about 0.1, mis-scaled dual stays near 0.02"/>
 </p>
 <p align="center"><em>With a mis-scaled step (η<sub>λ</sub> = 0.001) the penalty weight λ barely leaves zero, so the CVaR budget never shapes the policy. Penalty weight during training, five seeds.</em></p>
 
-Scaling the dual makes the penalty bind in training, but the selected policy **still breaches the budget in 75.1% of test weeks** once the return distribution shifts.
+Scaling the dual makes the penalty bind in training, but the selected policy still breaches the budget in 75.1% of test weeks once the return distribution shifts.
 
-### Failure 2 · The test protocol reverses the ranking
+### Failure 2: the test protocol reverses the ranking
 
 <p align="center">
   <img src="docs/assets/poster_protocol.svg" width="440" alt="Slope chart: the constrained learner leads minimum variance on a single stress split, but minimum variance leads under rolling walk-forward"/>
 </p>
 <p align="center"><em>The Sharpe ranking against minimum variance reverses with the test protocol: the learner leads on a single stress split (0.85 vs 0.23) and trails under a 20-fold walk-forward (0.74 vs 1.40). Same learner, same 31 assets.</em></p>
 
----
+## Method
 
-## 🛠️ Our solution
-
-The learner is a residual allocator over an inverse-volatility anchor, trained end-to-end through realised portfolio returns with a differentiable CVaR penalty. A **decision-time filter** then checks every trade.
+The learner is a residual allocator over an inverse-volatility anchor, trained end-to-end through realised portfolio returns with a differentiable CVaR penalty. A decision-time filter then checks every trade.
 
 ```mermaid
 flowchart LR
@@ -138,15 +128,15 @@ flowchart LR
 
 | Component | Equation | Why |
 | --- | --- | --- |
-| **Policy** | $`w_t=\mathrm{softmax}\big(\log a_t+f_\theta(s_t)\big)`$ | Starts as the anchor $`a_t`$ and learns only a tilt; long-only by construction. |
-| **Loss** | $`\mathcal{L}=-\mathrm{Sharpe}(r)+\lambda\,\mathrm{ReLU}(\widehat{\mathrm{CVaR}}-d)+\kappa\cdot\text{turnover}`$ | Exact gradients through net returns; CVaR via `torch.topk` acts only on the worst weeks. |
-| **Filter estimate** | $`\widehat{\mathrm{CVaR}}(w)=c_\alpha\sqrt{w^\top\Sigma w}-\mu^\top w,\ c_{0.95}=2.063`$ | Cheap, uses only returns before week $`t`$. |
-| **Filter step** | $`w(s)=m+s(w^{\text{prop}}-m),\ s^\star=\max\{s\in[0,1]:\widehat{\mathrm{CVaR}}(w(s))\le d\}`$ | Smallest change to the proposal that meets the budget. |
+| Policy | $`w_t=\mathrm{softmax}\big(\log a_t+f_\theta(s_t)\big)`$ | Starts as the anchor $`a_t`$ and learns only a tilt; long-only by construction. |
+| Loss | $`\mathcal{L}=-\mathrm{Sharpe}(r)+\lambda\,\mathrm{ReLU}(\widehat{\mathrm{CVaR}}-d)+\kappa\cdot\text{turnover}`$ | Exact gradients through net returns; CVaR via `torch.topk` acts only on the worst weeks. |
+| Filter estimate | $`\widehat{\mathrm{CVaR}}(w)=c_\alpha\sqrt{w^\top\Sigma w}-\mu^\top w,\ c_{0.95}=2.063`$ | Cheap, uses only returns before week $`t`$. |
+| Filter step | $`w(s)=m+s(w^{\text{prop}}-m),\ s^\star=\max\{s\in[0,1]:\widehat{\mathrm{CVaR}}(w(s))\le d\}`$ | Smallest change to the proposal that meets the budget. |
 
-The filter is a test-time enforcement layer, not another soft penalty, and a dedicated test ([`tests/test_risk_filter_no_lookahead.py`](tests/test_risk_filter_no_lookahead.py)) verifies the decision at week `t` is unchanged when future returns are shifted.
+The filter changes the portfolio itself before execution. A dedicated test ([`tests/test_risk_filter_no_lookahead.py`](tests/test_risk_filter_no_lookahead.py)) checks that the decision at week `t` is unchanged when future returns are shifted.
 
 <details>
-<summary><b>Worked example: one filter decision on 6 March 2020</b></summary>
+<summary>Worked example: one filter decision on 6 March 2020</summary>
 
 <br/>
 
@@ -162,10 +152,10 @@ Seven-ETF panel, 104 weeks before the decision. The proposal is an illustrative 
 | UUP (US dollar) | 0.000 | 0.279 | 0.164 |
 | BIL (cash) | 0.000 | 0.400 | 0.235 |
 
-1. **Proposal:** $`2.063\times1.32\%-0.067\%=2.66\% > d=1.2\%`$, so the filter fires.
-2. **Anchor:** minimum variance is estimated at 0.38%, inside the budget.
-3. **Bisection:** $`s^\star=0.413`$ — keep 41% of the tilt away from minimum variance.
-4. **Result:** $`2.063\times0.63\%-0.088\%=1.20\%`$, exactly at the budget.
+1. The proposal's estimate is $`2.063\times1.32\%-0.067\%=2.66\%`$, above $`d=1.2\%`$, so the filter fires.
+2. Minimum variance is estimated at 0.38%, inside the budget, so a crossing exists on the line.
+3. Bisection gives $`s^\star=0.413`$: the filter keeps 41% of the tilt away from minimum variance.
+4. The filtered portfolio's estimate is $`2.063\times0.63\%-0.088\%=1.20\%`$, exactly at the budget.
 
 ```python
 import numpy as np, pandas as pd, torch
@@ -190,9 +180,7 @@ print(round(info["cvar_proposed"], 4), round(s, 3), np.round(filtered.numpy(), 3
 
 </details>
 
----
-
-## 📊 Key results
+## Results
 
 | Experiment | Result |
 | --- | --- |
@@ -209,11 +197,11 @@ print(round(info["cvar_proposed"], 4), round(s, 3), np.round(filtered.numpy(), 3
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/poster_stress_paths.svg" alt="Drawdown paths 2020–2024 for constrained and unconstrained RL"/></td>
+    <td width="50%"><img src="docs/assets/poster_stress_paths.svg" alt="Drawdown paths 2020 to 2024 for constrained and unconstrained RL"/></td>
     <td width="50%"><img src="docs/assets/poster_cvar_tail.svg" alt="Weekly return histogram on the stress window with the worst 5% shaded"/></td>
   </tr>
   <tr>
-    <td align="center"><em>The constrained allocator loses about half as much: 7.7% vs 16.3% drawdown in March 2020. Five-seed means, 2020–2024.</em></td>
+    <td align="center"><em>The constrained allocator loses about half as much: 7.7% vs 16.3% drawdown in March 2020. Five-seed means, 2020 to 2024.</em></td>
     <td align="center"><em>The constraint thins the left tail of weekly returns. Stress window, five seeds pooled.</em></td>
   </tr>
   <tr>
@@ -227,7 +215,7 @@ print(round(info["cvar_proposed"], 4), round(s, 3), np.round(filtered.numpy(), 3
 </table>
 
 <details>
-<summary><b>Paper figures</b></summary>
+<summary>Paper figures</summary>
 
 <br/>
 
@@ -238,11 +226,9 @@ print(round(info["cvar_proposed"], 4), round(s, 3), np.round(filtered.numpy(), 3
 
 </details>
 
-**Setup.** Weekly data 2008–2024, 5 bps transaction costs, long-only with a 0.40 weight cap and 0.50 turnover cap, CVaR₉₅ budget $`d=1.2\%`$. Three universes: seven macro ETFs, ten sector ETFs and a 31-asset cross-asset universe. All features and filter inputs use information strictly before each decision. Baselines: cash, equal weight, inverse volatility, minimum variance, mean-variance, risk parity, min-CVaR, plus model-free A2C, PPO and SAC.
+Setup: weekly data from 2008 to 2024, 5 bps transaction costs, long-only with a 0.40 weight cap and 0.50 turnover cap, CVaR₉₅ budget $`d=1.2\%`$. Three universes: seven macro ETFs, ten sector ETFs and a 31-asset cross-asset universe. All features and filter inputs use information strictly before each decision. Baselines: cash, equal weight, inverse volatility, minimum variance, mean-variance, risk parity, min-CVaR, plus model-free A2C, PPO and SAC.
 
----
-
-## 🗂️ Repository structure
+## Repository structure
 
 ```text
 cvar-rl-portfolio-allocator/
@@ -268,9 +254,7 @@ cvar-rl-portfolio-allocator/
 └── data/                   # empty: market data is rebuilt locally, never committed
 ```
 
----
-
-## 🚀 Quick start
+## Quick start
 
 ```bash
 git clone https://github.com/nl2992/cvar-rl-portfolio-allocator.git
@@ -289,11 +273,9 @@ python scripts/build_dataset.py --config configs/experiment_large.yaml
 ```
 
 > [!NOTE]
-> **No market data is redistributed.** The panels are written to `data/processed/` (git-ignored). Vendors revise historical adjusted prices, so a fresh download can differ slightly from the panels used in the paper; [`DATA_MANIFEST.sha256`](DATA_MANIFEST.sha256) records the hashes of the original panels (`shasum -a 256 -c DATA_MANIFEST.sha256`).
+> The repository ships no market data. The panels are written to `data/processed/`, which git ignores. Vendors revise historical adjusted prices, so a fresh download can differ slightly from the panels used in the paper. [`DATA_MANIFEST.sha256`](DATA_MANIFEST.sha256) records the hashes of the original panels (`shasum -a 256 -c DATA_MANIFEST.sha256`).
 
----
-
-## 🔁 Reproducing the paper
+## Reproducing the paper
 
 Published numbers use Python 3.12.2 and the pinned [`requirements.lock.txt`](requirements.lock.txt):
 
@@ -304,7 +286,7 @@ source .venv-lock/bin/activate
 export PYTHONPATH=src
 ```
 
-Build the three panels as in [Quick start](#-quick-start), then run any row below from the repository root. Training studies are compute-heavy; every committed table under `results/` lets you check numbers without retraining.
+Build the three panels as in [Quick start](#quick-start), then run any row below from the repository root. The training studies are slow, and the committed tables under `results/` let you check every number without retraining.
 
 | Paper / poster result | Command | Output |
 | --- | --- | --- |
@@ -323,10 +305,10 @@ Build the three panels as in [Quick start](#-quick-start), then run any row belo
 | Macro walk-forward + regimes | `python scripts/run_walk_forward.py` → `python scripts/compile_regime_table.py` | [`results/tables_wf/`](results/tables_wf/), [`regime_comparison.csv`](results/tables/regime_comparison.csv) |
 | Regime-switching hybrid | `python scripts/run_hybrid_overlay.py`, `python scripts/run_hybrid_threshold_sweep.py` | [`hybrid_overlay_table.csv`](results/tables/hybrid_overlay_table.csv) |
 | Crisis timing | `python scripts/run_crisis_timing.py` | [`crisis_timing_table.csv`](results/tables/crisis_timing_table.csv) |
-| Ablations & robustness | `python scripts/run_ablations.py`, `python scripts/run_robustness.py` | [`results/tables_ablations/`](results/tables_ablations/), [`results/tables_robustness/`](results/tables_robustness/) |
+| Ablations and robustness | `python scripts/run_ablations.py`, `python scripts/run_robustness.py` | [`results/tables_ablations/`](results/tables_ablations/), [`results/tables_robustness/`](results/tables_robustness/) |
 | Macro / factor features | `python scripts/run_macro_study.py` | [`results/tables_macro/`](results/tables_macro/) |
 | Failure 2: protocol reversal | `python scripts/make_reversal_figure.py` | [`protocol_sharpe.csv`](results/tables_protocol/protocol_sharpe.csv) |
-| Ledoit–Wolf check, 31 assets | `python scripts/cr_shrinkage_large31.py` | [`shrinkage_large31_stress.csv`](results/tables_camera_ready/shrinkage_large31_stress.csv) |
+| Ledoit-Wolf check, 31 assets | `python scripts/cr_shrinkage_large31.py` | [`shrinkage_large31_stress.csv`](results/tables_camera_ready/shrinkage_large31_stress.csv) |
 | Stress paths | `python scripts/cr_stress_paths.py` | [`stress_paths.csv`](results/tables_camera_ready/stress_paths.csv) |
 
 Rebuild the figures, the paper and the poster:
@@ -341,11 +323,9 @@ python scripts/make_poster_figures.py
 (cd poster && latexmk -pdf poster.tex)
 ```
 
-The 31-asset walk-forward folds were not retained, so `make_reversal_figure.py` rebuilds that comparison from the values reported in the paper rather than retraining. See [`results/tables_camera_ready/README.md`](results/tables_camera_ready/README.md) for the exact environment the camera-ready tables were regenerated in.
+The 31-asset walk-forward folds were not retained, so `make_reversal_figure.py` rebuilds that comparison from the values reported in the paper. See [`results/tables_camera_ready/README.md`](results/tables_camera_ready/README.md) for the exact environment the camera-ready tables were regenerated in.
 
----
-
-## 📝 Citation
+## Citation
 
 ```bibtex
 @inproceedings{li2026tailconstraints,
@@ -359,10 +339,8 @@ The 31-asset walk-forward folds were not retained, so `make_reversal_figure.py` 
 }
 ```
 
-The DOI will be added after publication. GitHub's **Cite this repository** button reads [`CITATION.cff`](CITATION.cff).
+The DOI will be added after publication. GitHub's "Cite this repository" button reads [`CITATION.cff`](CITATION.cff).
 
----
-
-## 📄 License
+## License
 
 Code is released under the [MIT License](LICENSE).
