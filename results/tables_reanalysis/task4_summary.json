@@ -1,0 +1,92 @@
+{
+  "d_budget": 0.012,
+  "alpha": 0.95,
+  "cvar_window": 52,
+  "filter_lookback": 104,
+  "c_alpha": 2.0627128075074275,
+  "arms": {
+    "A5_filter_only": {
+      "sharpe": 0.9866,
+      "cvar_99": 0.0254,
+      "max_drawdown": 0.0678,
+      "avg_turnover": 0.024,
+      "breach_rate": 0.0791,
+      "mean_breach_magnitude": 0.0126,
+      "worst_breach_magnitude": 0.0134,
+      "final_lam_train": 0.0029,
+      "final_lam_eval": 0.0029,
+      "mean_shrink_train": 0.4992
+    },
+    "A6_filter_scaled_dual": {
+      "sharpe": 0.8513,
+      "cvar_99": 0.0165,
+      "max_drawdown": 0.0846,
+      "avg_turnover": 0.0357,
+      "breach_rate": 0.0744,
+      "mean_breach_magnitude": 0.0043,
+      "worst_breach_magnitude": 0.0045,
+      "final_lam_train": 0.1345,
+      "final_lam_eval": 0.1345,
+      "mean_shrink_train": 0.8576
+    },
+    "A7_adaptive_dual": {
+      "sharpe": 0.826,
+      "cvar_99": 0.0307,
+      "max_drawdown": 0.1272,
+      "avg_turnover": 0.0383,
+      "breach_rate": 0.8186,
+      "mean_breach_magnitude": 0.0048,
+      "worst_breach_magnitude": 0.0187,
+      "final_lam_train": 0.1014,
+      "final_lam_eval": 7.6917,
+      "mean_shrink_train": NaN
+    },
+    "A8_filter_adaptive_dual": {
+      "sharpe": 0.7999,
+      "cvar_99": 0.0196,
+      "max_drawdown": 0.0876,
+      "avg_turnover": 0.0344,
+      "breach_rate": 0.146,
+      "mean_breach_magnitude": 0.0042,
+      "worst_breach_magnitude": 0.0076,
+      "final_lam_train": 0.1374,
+      "final_lam_eval": 0.6567,
+      "mean_shrink_train": 0.8405
+    }
+  },
+  "weight_distance": {
+    "A5_filter_only": {
+      "mean_L1": 0.4761,
+      "mean_L2": 0.2544,
+      "mean_corr": 0.7859,
+      "frac_top_asset_differs": 0.0944,
+      "mean_turnover_arm": 0.0229,
+      "mean_turnover_minvar": 0.0113
+    },
+    "A6_filter_scaled_dual": {
+      "mean_L1": 0.6073,
+      "mean_L2": 0.2783,
+      "mean_corr": 0.7203,
+      "frac_top_asset_differs": 0.1783,
+      "mean_turnover_arm": 0.0339,
+      "mean_turnover_minvar": 0.0113
+    },
+    "A7_adaptive_dual": {
+      "mean_L1": 1.0182,
+      "mean_L2": 0.4691,
+      "mean_corr": -0.0006,
+      "frac_top_asset_differs": 0.8779,
+      "mean_turnover_arm": 0.0365,
+      "mean_turnover_minvar": 0.0113
+    },
+    "A8_filter_adaptive_dual": {
+      "mean_L1": 0.588,
+      "mean_L2": 0.2705,
+      "mean_corr": 0.7458,
+      "frac_top_asset_differs": 0.1581,
+      "mean_turnover_arm": 0.0326,
+      "mean_turnover_minvar": 0.0113
+    }
+  },
+  "elapsed_seconds": 651.3090498447418
+}

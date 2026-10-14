@@ -1,0 +1,20 @@
+{
+  "d_budget": 0.012,
+  "test_window_weeks": 267,
+  "weight_distance_summary_mean": {
+    "mean_L1": 0.8902083459277016,
+    "mean_L2": 0.40481582820033185,
+    "mean_corr": 0.20095515080470058,
+    "frac_top_asset_differs": 0.9745318352059925,
+    "mean_turnover_constrained": 0.0370945946148598,
+    "mean_turnover_minvar": 0.011253371819892737
+  },
+  "weight_distance_summary_std": {
+    "mean_L1": 0.04734232345748096,
+    "mean_L2": 0.020276225483247,
+    "mean_corr": 0.1063699748969546,
+    "frac_top_asset_differs": 0.0119615875825253,
+    "mean_turnover_constrained": 0.00022587022476204882,
+    "mean_turnover_minvar": 0.0
+  }
+}

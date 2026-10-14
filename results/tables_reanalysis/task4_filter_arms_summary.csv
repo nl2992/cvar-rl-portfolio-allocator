@@ -1,0 +1,5 @@
+arm,sharpe,cvar_99,max_drawdown,avg_turnover,breach_rate,mean_breach_magnitude,worst_breach_magnitude,final_lam_train,final_lam_eval,mean_shrink_train
+A5_filter_only,0.9866,0.0254,0.0678,0.024,0.0791,0.0126,0.0134,0.0029,0.0029,0.4992
+A6_filter_scaled_dual,0.8513,0.0165,0.0846,0.0357,0.0744,0.0043,0.0045,0.1345,0.1345,0.8576
+A7_adaptive_dual,0.826,0.0307,0.1272,0.0383,0.8186,0.0048,0.0187,0.1014,7.6917,
+A8_filter_adaptive_dual,0.7999,0.0196,0.0876,0.0344,0.146,0.0042,0.0076,0.1374,0.6567,0.8405

@@ -1,0 +1,4 @@
+regime,rl_cvar_constrained_sharpe,rl_cvar_constrained_cvar_99,rl_cvar_constrained_max_drawdown,rl_cvar_constrained_n_weeks,rl_unconstrained_sharpe,rl_unconstrained_cvar_99,rl_unconstrained_max_drawdown,rl_unconstrained_n_weeks,min_variance_sharpe,min_variance_cvar_99,min_variance_max_drawdown,min_variance_n_weeks,inverse_vol_sharpe,inverse_vol_cvar_99,inverse_vol_max_drawdown,inverse_vol_n_weeks
+calm,1.4381,0.0195,0.0537,388.0,1.2822,0.0275,0.1075,388.0,1.7696,0.0087,0.043,388.0,1.7214,0.0108,0.0405,388.0
+high_vol,2.1688,0.0184,0.0271,71.0,2.1935,0.0232,0.0267,71.0,1.668,0.0065,0.0152,71.0,2.8031,0.0087,0.0129,71.0
+selloff,-0.8094,0.0479,0.1369,61.0,-1.1271,0.066,0.2177,61.0,0.0353,0.0159,0.0334,61.0,-1.3267,0.033,0.0925,61.0

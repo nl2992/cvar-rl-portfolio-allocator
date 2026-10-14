@@ -1,0 +1,2 @@
+comparison,diff,ci_low,ci_high,p_value
+cvar99_constrained_minus_unconstrained,-0.032980381413746526,-0.03474649072854247,-0.007645280644879828,0.0

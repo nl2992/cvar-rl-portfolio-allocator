@@ -1,0 +1,5 @@
+strategy,stress,walkforward
+minimum variance,0.23,1.4
+inverse vol,0.38,0.78
+diff. constrained (ours),0.85,0.74
+diff. unconstrained,0.7,0.56

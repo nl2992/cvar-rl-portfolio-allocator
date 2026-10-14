@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite the accompanying paper."
+title: "Making Tail Constraints Bind: Two Silent Failure Modes in CVaR-Constrained Portfolio RL"
+authors:
+  - family-names: Li
+    given-names: Nigel
+    affiliation: "Columbia University"
+    orcid: "https://orcid.org/0009-0007-9869-3472"
+  - family-names: Han
+    given-names: Yutong
+    affiliation: "Columbia University"
+    orcid: "https://orcid.org/0009-0004-0464-1398"
+date-released: 2026-10-04
+version: "1.1.0"
+license: MIT
+repository-code: "https://github.com/nl2992/cvar-rl-portfolio-allocator"
+keywords:
+  - portfolio allocation
+  - reinforcement learning
+  - Conditional Value-at-Risk
+  - constrained MDP
+  - reproducible research
+  - ICAIF
+preferred-citation:
+  type: conference-paper
+  title: "Making Tail Constraints Bind: Two Silent Failure Modes in CVaR-Constrained Portfolio RL"
+  authors:
+    - family-names: Li
+      given-names: Nigel
+      orcid: "https://orcid.org/0009-0007-9869-3472"
+    - family-names: Han
+      given-names: Yutong
+      orcid: "https://orcid.org/0009-0004-0464-1398"
+  collection-title: "Proceedings of the 7th ACM International Conference on AI in Finance (ICAIF '26)"
+  conference:
+    name: "ICAIF '26: 7th ACM International Conference on AI in Finance"
+    city: Milan
+    country: IT
+    date-start: 2026-11-14
+    date-end: 2026-11-17
+  publisher:
+    name: ACM
+  year: 2026

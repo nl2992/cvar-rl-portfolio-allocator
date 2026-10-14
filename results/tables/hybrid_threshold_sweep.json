@@ -1,0 +1,9 @@
+{
+  "n_configs": 15,
+  "min_var_sharpe": 1.2087,
+  "n_configs_hybrid_wins": 10,
+  "sharpe_gain_min": -0.1833,
+  "sharpe_gain_max": 0.2297,
+  "sharpe_gain_mean": 0.0772,
+  "default_config_gain": 0.107
+}

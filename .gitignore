@@ -1,0 +1,43 @@
+.DS_Store
+.venv
+
+# Market data is rebuilt locally (scripts/build_dataset.py), never committed
+data/raw/
+data/interim/
+data/processed/
+*.parquet
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+# Results: keep only the small result tables behind the paper's numbers
+# (CSV/JSON in results/tables*/); checkpoints, logs and curves stay local.
+results/*
+!results/.gitkeep
+!results/tables/
+!results/tables_*/
+results/tables/*
+results/tables_*/*
+!results/tables/*.csv
+!results/tables/*.json
+!results/tables_*/*.csv
+!results/tables_*/*.json
+!results/tables_camera_ready/README.md
+notebooks/.ipynb_checkpoints/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.out
+*.log
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+
+paper/figures/*.png

@@ -1,0 +1,27 @@
+{
+  "primary_test": {
+    "label": "constrained_arch_buggy_vs_unconstrained",
+    "constrained_cvar99_mean": 0.02537,
+    "unconstrained_cvar99_mean": 0.06471,
+    "pct_reduction": 60.8,
+    "observed_diff": -0.039343,
+    "p_one_sided": 0.00436,
+    "p_two_sided": 0.00828,
+    "n_permutations": 50000,
+    "null_mean": 8.8e-05,
+    "null_std": 0.013425,
+    "significant_p05_one_sided": true,
+    "significant_p05_two_sided": true
+  },
+  "secondary_test": {
+    "label": "fixed_vs_unconstrained",
+    "fixed_cvar99_mean": 0.02807,
+    "observed_diff": -0.036637,
+    "p_one_sided": 0.00372,
+    "p_two_sided": 0.00768,
+    "n_permutations": 50000,
+    "null_mean": 0.000103,
+    "null_std": 0.012653
+  },
+  "interpretation": "The constrained safety-critic architecture reduces CVaR-99 by 61% vs unconstrained RL (p=0.0044, one-sided permutation test, n=5 seeds each). The reduction holds even when the Lagrange multiplier is silenced (final_lam=0.0), demonstrating that the safety-critic training code path provides implicit tail-risk regularization independently of the Lagrange penalty."
+}
