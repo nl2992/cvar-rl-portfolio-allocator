@@ -10,3 +10,6 @@ Build locally with:
 cd paper
 latexmk -pdf main.tex   # or: tectonic main.tex
 ```
+
+`acmart.cls` (v2.20, 2026/08/16) and `ACM-Reference-Format.bst` are vendored here
+so the ACM rights block (`\setcopyright{cc}`) builds with older TeX bundles.
