@@ -1,0 +1,2 @@
+"""Data contracts and generators."""
+

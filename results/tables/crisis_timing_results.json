@@ -1,0 +1,80 @@
+{
+  "covid_2020": {
+    "trough_date": "2020-03-20",
+    "strategies": {
+      "constrained_rl": {
+        "derisk_date": "2020-03-06",
+        "lead_weeks_before_trough": 2,
+        "crisis_window_perf": {
+          "cum_return": -0.010694038859064392,
+          "ann_vol": 0.12542519906668448,
+          "cvar_99": 0.0417148722565764,
+          "max_drawdown": 0.09487765966158535,
+          "n_weeks": 20
+        }
+      },
+      "min_var": {
+        "derisk_date": "2020-03-13",
+        "lead_weeks_before_trough": 1,
+        "crisis_window_perf": {
+          "cum_return": -0.00366030384083349,
+          "ann_vol": 0.053240576241944046,
+          "cvar_99": 0.023115755596630427,
+          "max_drawdown": 0.0418490989643886,
+          "n_weeks": 20
+        }
+      },
+      "spy": {
+        "derisk_date": "2015-08-14",
+        "lead_weeks_before_trough": 240,
+        "crisis_window_perf": {
+          "cum_return": -0.08284352596336586,
+          "ann_vol": 0.4496577146656397,
+          "cvar_99": 0.14545749423989274,
+          "max_drawdown": 0.31828953717234976,
+          "n_weeks": 20
+        }
+      }
+    },
+    "timing_advantage_constrained_vs_minvar": 1
+  },
+  "rates_2022": {
+    "trough_date": "2022-10-14",
+    "strategies": {
+      "constrained_rl": {
+        "derisk_date": "2020-03-06",
+        "lead_weeks_before_trough": 136,
+        "crisis_window_perf": {
+          "cum_return": 0.01249195510639245,
+          "ann_vol": 0.04898302098210595,
+          "cvar_99": 0.0098334429433546,
+          "max_drawdown": 0.035572436624521586,
+          "n_weeks": 20
+        }
+      },
+      "min_var": {
+        "derisk_date": "2020-03-13",
+        "lead_weeks_before_trough": 135,
+        "crisis_window_perf": {
+          "cum_return": 0.005222005619824666,
+          "ann_vol": 0.020002270895229,
+          "cvar_99": 0.005381568688871368,
+          "max_drawdown": 0.008787857380202824,
+          "n_weeks": 20
+        }
+      },
+      "spy": {
+        "derisk_date": "2015-08-14",
+        "lead_weeks_before_trough": 374,
+        "crisis_window_perf": {
+          "cum_return": 0.060892463120036044,
+          "ann_vol": 0.2442975191251474,
+          "cvar_99": 0.04785102578866984,
+          "max_drawdown": 0.16027320159500658,
+          "n_weeks": 20
+        }
+      }
+    },
+    "timing_advantage_constrained_vs_minvar": 1
+  }
+}

@@ -1,0 +1,67 @@
+# Phase-2 H5 (scale/dimensionality): 31-asset cross-asset/sector/industry ETF universe.
+# Same provenance/clock/costs as the macro and sector universes; built via the Yahoo
+# loader and frozen to parquet. Higher dimensionality stresses MVO estimation error.
+
+experiment_id: cvar_ac_large_v1
+dataset_version: yahoo_large31_2008_2024
+seed: 42
+
+data:
+  source: parquet
+  tickers: [SPY, IWM, EFA, EEM, XLK, XLF, XLE, XLV, XLY, XLP, XLU, XLI, XLB,
+            XBI, XOP, XHB, XRT, KRE, IYR, SMH, TLT, IEF, SHY, LQD, HYG, TIP,
+            GLD, SLV, DBC, UUP, BIL]
+  start: "2008-01-01"
+  end: "2024-12-31"
+  weekly_rule: W-FRI
+  parquet_path: data/processed/aligned_portfolio_panel_large.parquet
+  periods_per_year: 52
+  train_frac: 0.6
+  val_frac: 0.2
+
+universe:
+  universe_id: large31
+  assets: [SPY, IWM, EFA, EEM, XLK, XLF, XLE, XLV, XLY, XLP, XLU, XLI, XLB,
+           XBI, XOP, XHB, XRT, KRE, IYR, SMH, TLT, IEF, SHY, LQD, HYG, TIP,
+           GLD, SLV, DBC, UUP, BIL]
+
+environment:
+  transaction_cost_bps: 5.0
+  lookback: 26
+
+constraints:
+  long_only: true
+  max_weight: 0.25
+  turnover_cap: 0.50
+  gross_cap: 1.0
+  cash_index: 30                 # BIL is the last (cash) asset
+  cash_floor: 0.0
+
+risk:
+  cvar_alpha: 0.95
+  cvar_limit: 0.03
+  cvar_window: 52
+
+model:
+  hidden: [128, 128]
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  gamma: 0.95
+  entropy_coef: 0.01
+  value_coef: 0.5
+  log_std_init: -0.5
+  cost_mode: breach
+  lagrange_lr: 1.0
+  cvar_budget: 0.05
+
+training:
+  n_episodes: 150
+  turnover_penalty: 0.0
+  entropy_decay: 0.1
+  eval_every: 10
+  seeds: [7, 13, 23, 42, 2025]
+
+backtest:
+  periods_per_year: 52
+  bootstrap_resamples: 2000
+  block_size: 4

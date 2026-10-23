@@ -1,0 +1,20 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.pdf
+!logos/*.pdf
+comment.cut
+build.log
+
+# latex preview rasterizations
+_pv/
+*.synctex.gz
+!figures/*.pdf
+figures/*.png

@@ -1,0 +1,24 @@
+{
+  "rule1_selfconsistent_val_quantile": {
+    "d": 0.011419639610492345,
+    "breach_rate_mean": 0.7088372093023256,
+    "breach_rate_std": 0.02970924543752805,
+    "sharpe_mean": 0.950711043838141,
+    "final_lam_mean": 0.11605373673593589
+  },
+  "rule2_anchor_achievable": {
+    "d": 0.012317847827716359,
+    "breach_rate_mean": 0.7534883720930232,
+    "breach_rate_std": 0.05696487773914367,
+    "sharpe_mean": 0.8816318842740062,
+    "final_lam_mean": 0.11457919238093066
+  },
+  "rule3_adaptive_per_fold": {
+    "n_folds": 10,
+    "breach_rate_mean": NaN,
+    "breach_rate_std": NaN,
+    "d_fold_mean": 0.01360290074199674,
+    "d_fold_min": 0.005514676926562459,
+    "d_fold_max": 0.04354861824675993
+  }
+}

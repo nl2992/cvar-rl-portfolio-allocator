@@ -1,0 +1,5 @@
+arm,mean_L1,mean_L2,mean_corr,frac_top_asset_differs,mean_turnover_arm,mean_turnover_minvar
+A5_filter_only,0.4761,0.2544,0.7859,0.0944,0.0229,0.0113
+A6_filter_scaled_dual,0.6073,0.2783,0.7203,0.1783,0.0339,0.0113
+A7_adaptive_dual,1.0182,0.4691,-0.0006,0.8779,0.0365,0.0113
+A8_filter_adaptive_dual,0.588,0.2705,0.7458,0.1581,0.0326,0.0113

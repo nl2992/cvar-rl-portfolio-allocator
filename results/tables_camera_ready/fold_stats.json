@@ -1,0 +1,56 @@
+{
+  "alignment_max_abs_diff_shared_tickers": 1.7658721538360567e-06,
+  "per_universe": {
+    "etf7": {
+      "n": 20,
+      "improved": 9,
+      "tied": 11,
+      "worse": 0,
+      "mean_diff": -0.004105003500666765,
+      "wilcoxon_p": 0.007685794055213263,
+      "sign_test_excl_ties_p": 0.00390625
+    },
+    "sector10": {
+      "n": 20,
+      "improved": 17,
+      "tied": 2,
+      "worse": 1,
+      "mean_diff": -0.008652240644209613,
+      "wilcoxon_p": 0.0003270126629328652,
+      "sign_test_excl_ties_p": 0.00014495849609375
+    }
+  },
+  "pooled_as_printed": {
+    "n": 40,
+    "improved": 26,
+    "tied": 13,
+    "worse": 1,
+    "wilcoxon_p": 8.804538063577626e-06,
+    "sign_test_counting_ties_as_failures_p": 0.0806904677519924,
+    "sign_test_excl_ties_p": 4.172325134277344e-07
+  },
+  "calendar_clusters": {
+    "n_clusters": 20,
+    "improved": 17,
+    "tied": 2,
+    "worse": 1,
+    "mean_diff": -0.00637862207243819,
+    "wilcoxon_p": 0.0003270126629328652,
+    "sign_test_excl_ties_p": 0.00014495849609375,
+    "exact_sign_flip_p": 3.814697265625e-05,
+    "block_bootstrap_ci95": {
+      "block_2": [
+        -0.009445199240983177,
+        -0.0034153331320510233
+      ],
+      "block_3": [
+        -0.009277639911418285,
+        -0.0032926261107598573
+      ],
+      "block_4": [
+        -0.009223299274366959,
+        -0.0030894487103597683
+      ]
+    }
+  }
+}
