@@ -19,6 +19,8 @@ Nigel Li · Yutong Han · Columbia University
 </p>
 
 <a href="paper/main.pdf">Paper</a> ·
+<a href="https://dl.acm.org/doi/proceedings/10.1145/3858063">ACM Digital Library proceedings</a> ·
+<a href="https://github.com/nl2992/cvar-rl-portfolio-allocator">GitHub repository</a> ·
 <a href="poster/poster.pdf">Poster</a> ·
 <a href="#quick-start">Quick start</a> ·
 <a href="#reproducing-the-paper">Reproduce</a> ·
@@ -31,6 +33,8 @@ Nigel Li · Yutong Han · Columbia University
 - 2026-11: poster presentation at ICAIF '26 in Milan.
 - 2026-10: camera-ready paper, A0 poster and reproduction code released here.
 - 2026: paper accepted at ICAIF '26, the 7th ACM International Conference on AI in Finance.
+- ACM Digital Library: <a href="https://dl.acm.org/doi/proceedings/10.1145/3858063">ICAIF '26 proceedings</a>. The individual paper DOI will be linked here after publication.
+- <a href="https://github.com/nl2992/cvar-rl-portfolio-allocator">GitHub repository</a> for code and reproduction materials.
 
 ## Why this project
 
@@ -66,12 +70,12 @@ flowchart TD
     <td align="center" width="50%">
       <a href="paper/main.pdf"><img src="docs/assets/paper_page1.png" width="300" alt="First page of the paper"/></a><br/>
       Paper (8 pages, ACM format)<br/>
-      <a href="paper/main.pdf">PDF</a> · <a href="paper/main.tex">LaTeX source</a>
+      <a href="paper/main.pdf">Camera-ready PDF</a> · <a href="paper/main.tex">LaTeX source</a> · <a href="https://dl.acm.org/doi/proceedings/10.1145/3858063">ACM Digital Library proceedings</a>
     </td>
     <td align="center" width="50%">
       <a href="poster/poster.pdf"><img src="docs/assets/poster_preview.png" width="300" alt="A0 conference poster"/></a><br/>
       Poster (A0 portrait)<br/>
-      <a href="poster/poster.pdf">PDF</a> · <a href="poster/poster.tex">LaTeX source</a>
+      <a href="poster/poster.pdf">PDF with ACM QR code</a> · <a href="poster/poster.tex">LaTeX source</a> · <a href="https://github.com/nl2992/cvar-rl-portfolio-allocator">GitHub repository</a>
     </td>
   </tr>
 </table>
